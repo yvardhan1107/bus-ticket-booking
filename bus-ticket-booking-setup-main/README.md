@@ -1,70 +1,117 @@
-# Bus Ticket Booking - Full Stack Implementation
+# Bus Ticket Booking System 🚌
 
-## ✅ What Was Built
+A modern, full-stack bus ticket booking application built with the MERN stack (MongoDB, Express, React, Node.js). This system allows users to search for buses, view seat layouts, book tickets, and manage their bookings. It also includes a comprehensive Admin Dashboard for managing buses, routes, and schedules.
 
-### Backend (Node.js + Express + MongoDB)
-Full CRUD API for Busses, Routes, Booking, and Users.
+## 🚀 Features
 
-### Frontend Updates
+### User Features
+- **Search Buses**: Filter by source, destination, and date.
+- **Seat Selection**: Interactive seat map with real-time availability.
+- **Booking Management**: Book tickets and view booking history.
+- **User Authentication**: Secure login and registration.
+- **Responsive Design**: optimized for desktop and mobile devices.
 
-| Page/Component | Status | Features |
-|----------------|--------|----------|
-| **Bus Listing** | ✅ | Dynamic API data, search filtering |
-| **Bus Details** | ✅ | Dynamic route info, fetches by ID |
-| **Seat Map** | ✅ | Interactive grid, disables booked seats, tracks price |
-| **Checkout** | ✅ | Passenger details form per seat, booking submission |
-| **My Bookings** | ✅ | List user bookings, cancel booking option |
-| **Admin Panel** | ✅ | Dashboard, Bus CRUD, Route Scheduling |
+### Admin Features
+- **Dashboard**: Overview of system statistics.
+- **Bus Management**: Add, update, and remove buses (including amenities, capacity, type).
+- **Route Management**: Schedule routes, set prices, and assign buses.
+- **Protected Routes**: Secure admin-only area.
 
----
+## 🛠️ Tech Stack
 
-## 👩‍💻 Admin Dashboard Guide
+- **Frontend**: React.js (Vite), Tailwind CSS, Framer Motion, React Router DOM.
+- **Backend**: Node.js, Express.js.
+- **Database**: MongoDB (Mongoose).
+- **Authentication**: JWT (JSON Web Tokens).
 
-To access the admin panel, you must login with an **admin account**.
-**URL:** `/admin/dashboard`
-**Test Admin:** `admin@busbook.com` / `admin123`
+## 📂 Project Structure
 
-### 1. Manage Buses (`/admin/buses`)
-- **View:** See a list of all buses in the fleet.
-- **Add:** Click "Add Bus" to register a new vehicle (Name, Number, Type, Seats, Amenities).
-- **Edit/Delete:** Update details or remove a bus from service.
+```
+bus-ticket-booking-setup-main/
+├── backend/            # Express API Server
+│   ├── config/        # Database configuration
+│   ├── models/        # Mongoose models (Bus, User, Route, Booking)
+│   ├── routes/        # API routes
+│   └── server.js      # Entry point
+├── src/               # React Frontend
+│   ├── components/    # Reusable components (Navbar, Footer, etc.)
+│   ├── context/       # Context API (AuthContext)
+│   ├── pages/         # Page components (Home, Bus, Admin, etc.)
+│   └── App.jsx        # Main application component
+└── ...
+```
 
-### 2. Manage Routes (`/admin/routes`)
-- **Schedule:** Assign a bus to a route (Origin -> Destination).
-- **Date/Time:** Set departure and duration.
-- **Price:** Set ticket price per seat.
-- **Auto-Seats:** Available seats are automatically pulled from the selected bus capacity.
+## ⚙️ Installation & Setup
 
----
+### Prerequisites
+- Node.js (v14+ recommended)
+- MongoDB (Local or Atlas connection string)
 
-## 🚀 How to Run
+### 1. Backend Setup
+Navigate to the backend directory and install dependencies:
 
-### 1. Start Backend
 ```bash
 cd backend
-npm run dev
+npm install
 ```
 
-### 2. Start Frontend
+Create a `.env` file in the `backend` directory with the following variables:
+
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+# Add other variables if needed
+```
+
+Start the backend server:
+
 ```bash
-# In project root
 npm run dev
 ```
+*The server will run on `http://localhost:5000`*
 
----
+### 2. Frontend Setup
+Navigate to the root directory (where `vite.config.js` is located) and install dependencies:
 
-## 📡 API Endpoints Used
+```bash
+# Return to root if inside backend
+cd .. 
+npm install
+```
 
-- `GET /api/buses` (Public) - List active buses
-- `POST /api/buses` (Admin) - Create bus
-- `GET /api/routes` (Public) - List active routes
-- `POST /api/routes` (Admin) - Create route
-- `GET /api/routes/:id` - Fetch route details + booked seats
-- `POST /api/bookings` - Create new booking
-- `GET /api/bookings/my` - Fetch user history
+Start the frontend development server:
 
----
+```bash
+npm run dev
+```
+*The application will run on `http://localhost:5173` (or similar)*
 
-## Credentials
-- **Admin:** `admin@busbook.com` / `admin123`
-- **User:** `john@example.com` / `user123`
+## 📡 API Endpoints
+
+### Public
+- `GET /api/buses`: Get all buses
+- `GET /api/routes`: Get all routes
+- `GET /api/routes/:id`: Get specific route details
+
+### Authenticated User
+- `POST /api/bookings`: Create a booking
+- `GET /api/bookings/my`: Get user's booking history
+
+### Admin
+- `POST /api/buses`: Add a new bus
+- `PUT /api/buses/:id`: Update bus details
+- `DELETE /api/buses/:id`: Delete a bus
+- `POST /api/routes`: Create a new route schedule
+
+## 👥 Credentials (Default/Test)
+
+**Admin Account:**
+- Email: `admin@busbook.com`
+- Password: `admin123`
+
+**User Account:**
+- Register a new account or use `john@example.com` / `user123`
+
+## 📄 License
+This project is licensed under the ISC License.
